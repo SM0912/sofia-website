@@ -16,21 +16,6 @@ class PortfolioExperience {
   private mouse = new THREE.Vector2()
   private raycaster = new THREE.Raycaster()
   private clock = new THREE.Clock()
-  private backgroundColors = [
-    new THREE.Color(0x0a0a0a), // Dark
-    new THREE.Color(0x1a0a2e), // Deep Purple
-    new THREE.Color(0x16213e), // Dark Blue
-    new THREE.Color(0x0f3460), // Navy
-    new THREE.Color(0x533a71), // Purple
-    new THREE.Color(0x2d1b69), // Indigo
-    new THREE.Color(0x0e4b99), // Blue
-    new THREE.Color(0x2e8b57), // Sea Green
-    new THREE.Color(0x8b0000), // Dark Red
-    new THREE.Color(0x4b0082)  // Indigo
-  ]
-  private currentColorIndex = 0
-  private targetColor = new THREE.Color()
-  private currentColor = new THREE.Color()
 
   constructor() {
     this.canvas = document.getElementById('three-canvas') as HTMLCanvasElement
@@ -39,7 +24,6 @@ class PortfolioExperience {
     this.createGeometricShapes()
     this.setupEventListeners()
     this.setupScrollAnimations()
-    this.setupBackgroundColorAnimation()
     this.animate()
     this.hideLoadingScreen()
   }
@@ -47,9 +31,7 @@ class PortfolioExperience {
   private init() {
     // Scene
     this.scene = new THREE.Scene()
-    this.currentColor.copy(this.backgroundColors[0])
-    this.targetColor.copy(this.backgroundColors[1])
-    this.scene.fog = new THREE.Fog(this.currentColor.getHex(), 50, 200)
+    this.scene.fog = new THREE.Fog(0x0a0a0a, 50, 200)
 
     // Camera
     this.camera = new THREE.PerspectiveCamera(
@@ -68,46 +50,7 @@ class PortfolioExperience {
     })
     this.renderer.setSize(window.innerWidth, window.innerHeight)
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-    this.renderer.setClearColor(this.currentColor.getHex(), 1)
-  }
-
-  private setupBackgroundColorAnimation() {
-    // Animate background color changes every 3 seconds
-    const colorTimeline = gsap.timeline({ repeat: -1 })
-    
-    this.backgroundColors.forEach((color, index) => {
-      const nextIndex = (index + 1) % this.backgroundColors.length
-      const nextColor = this.backgroundColors[nextIndex]
-      
-      colorTimeline.to(this.currentColor, {
-        r: nextColor.r,
-        g: nextColor.g,
-        b: nextColor.b,
-        duration: 3,
-        ease: "power2.inOut",
-        onUpdate: () => {
-          this.renderer.setClearColor(this.currentColor.getHex(), 1)
-          this.scene.fog.color.copy(this.currentColor)
-          
-          // Update particle colors to complement background
-          const particleGeometry = this.particles.geometry
-          const colors = particleGeometry.attributes.color.array as Float32Array
-          
-          for (let i = 0; i < colors.length; i += 3) {
-            const complementColor = new THREE.Color()
-            complementColor.setHSL(
-              (this.currentColor.getHSL({h: 0, s: 0, l: 0}).h + 0.5) % 1,
-              0.7,
-              0.6 + Math.sin(this.clock.getElapsedTime() * 0.5 + i * 0.01) * 0.2
-            )
-            colors[i] = complementColor.r
-            colors[i + 1] = complementColor.g
-            colors[i + 2] = complementColor.b
-          }
-          particleGeometry.attributes.color.needsUpdate = true
-        }
-      })
-    })
+    this.renderer.setClearColor(0x0a0a0a, 1)
   }
 
   private createParticleSystem() {
@@ -178,7 +121,7 @@ class PortfolioExperience {
 
     this.scene.add(this.geometricShapes)
 
-    // Add lighting with dynamic colors
+    // Add lighting
     const ambientLight = new THREE.AmbientLight(0x404040, 0.4)
     this.scene.add(ambientLight)
 
@@ -189,27 +132,6 @@ class PortfolioExperience {
     const pointLight = new THREE.PointLight(0x00d4ff, 0.8, 50)
     pointLight.position.set(-10, -10, 10)
     this.scene.add(pointLight)
-
-    // Animate light colors to match background
-    gsap.to(directionalLight.color, {
-      r: 0.2,
-      g: 0.8,
-      b: 1,
-      duration: 4,
-      repeat: -1,
-      yoyo: true,
-      ease: "power2.inOut"
-    })
-
-    gsap.to(pointLight.color, {
-      r: 1,
-      g: 0.2,
-      b: 0.8,
-      duration: 6,
-      repeat: -1,
-      yoyo: true,
-      ease: "power2.inOut"
-    })
   }
 
   private setupEventListeners() {
@@ -341,11 +263,6 @@ class PortfolioExperience {
       const mesh = shape as THREE.Mesh
       mesh.position.y += Math.sin(elapsedTime + index) * 0.01
       mesh.position.x += Math.cos(elapsedTime + index) * 0.005
-      
-      // Update shape colors to complement background
-      const material = mesh.material as THREE.MeshPhongMaterial
-      const hue = (elapsedTime * 0.1 + index * 0.2) % 1
-      material.color.setHSL(hue, 0.7, 0.5)
     })
 
     this.renderer.render(this.scene, this.camera)
