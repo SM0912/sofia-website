@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="Creative Portfolio - Built with ChatAndBuild" />
+    <meta property="og:description" content="Interactive 3D portfolio showcasing creative work and technical expertise" />
+    <meta property="og:image" content="https://cdn.chatandbuild.com/images/preview.png" />
+    <meta property="keywords" content="no-code, app builder, conversation-driven development, portfolio, three.js, 3D, creative" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Creative Portfolio - Built with ChatAndBuild" />
+    <meta property="twitter:description" content="Interactive 3D portfolio showcasing creative work and technical expertise" />
+    <meta property="twitter:image" content="https://cdn.chatandbuild.com/images/preview.png" />
+    <meta property="twitter:site" content="@chatandbuild" />
+    <title>Creative Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app">
+      <!-- Loading Screen -->
+      <div id="loading-screen">
+        <div class="loader">
+          <div class="loader-inner"></div>
+        </div>
+        <p>Loading Experience...</p>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="navbar">
+        <div class="nav-brand">
+          <h2>Sofia Esmeralda Perez Molina</h2>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#home" data-section="home">Home</a></li>
+          <li><a href="#about" data-section="about">About</a></li>
+          <li><a href="#projects" data-section="projects">Projects</a></li>
+          <li><a href="#contact" data-section="contact">Contact</a></li>
+        </ul>
+        <div class="nav-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+
+      <!-- Three.js Canvas -->
+      <canvas id="three-canvas"></canvas>
+
+      <!-- Content Sections -->
+      <main class="content">
+        <!-- Hero Section -->
+        <section id="home" class="section hero-section">
+          <div class="hero-content">
+            <h1 class="hero-title">
+              <span class="line">Creative</span>
+              <span class="line">Developer</span>
+            </h1>
+            <p class="hero-subtitle">Crafting immersive digital experiences with cutting-edge technology</p>
+            <div class="hero-cta">
+              <button class="btn btn-primary" data-section="projects">View My Work</button>
+              <button class="btn btn-secondary" data-section="contact">Get In Touch</button>
+            </div>
+          </div>
+          <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+            <span>Scroll</span>
+          </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section about-section">
+          <div class="container">
+            <div class="section-header">
+              <h2 class="section-title">About Me</h2>
+              <p class="section-subtitle">Passionate about creating meaningful digital experiences</p>
+            </div>
+            <div class="about-content">
+              <div class="about-text">
+                <p>I'm a creative developer with 5+ years of experience in building interactive web applications and immersive 3D experiences. I specialize in Three.js, WebGL, and modern web technologies.</p>
+                <p>My passion lies in pushing the boundaries of what's possible on the web, creating experiences that not only look stunning but also provide meaningful user interactions.</p>
+                <div class="skills">
+                  <div class="skill-category">
+                    <h4>Frontend</h4>
+                    <div class="skill-tags">
+                      <span>React</span>
+                      <span>TypeScript</span>
+                      <span>Three.js</span>
+                      <span>WebGL</span>
+                    </div>
+                  </div>
+                  <div class="skill-category">
+                    <h4>Tools</h4>
+                    <div class="skill-tags">
+                      <span>Blender</span>
+                      <span>Figma</span>
+                      <span>GSAP</span>
+                      <span>Vite</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="about-image">
+                <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Developer workspace" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section projects-section">
+          <div class="container">
+            <div class="section-header">
+              <h2 class="section-title">Featured Projects</h2>
+              <p class="section-subtitle">A showcase of my recent work and experiments</p>
+            </div>
+            <div class="projects-grid">
+              <div class="project-card" data-project="0">
+                <div class="project-image">
+                  <img src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=800" alt="3D Web Experience" />
+                </div>
+                <div class="project-content">
+                  <h3>Immersive 3D Gallery</h3>
+                  <p>Interactive art gallery built with Three.js featuring dynamic lighting and particle systems.</p>
+                  <div class="project-tags">
+                    <span>Three.js</span>
+                    <span>WebGL</span>
+                    <span>GLSL</span>
+                  </div>
+                </div>
+              </div>
+              <div class="project-card" data-project="1">
+                <div class="project-image">
+                  <img src="https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=800" alt="E-commerce Platform" />
+                </div>
+                <div class="project-content">
+                  <h3>Product Configurator</h3>
+                  <p>Real-time 3D product customization tool with advanced material rendering.</p>
+                  <div class="project-tags">
+                    <span>React</span>
+                    <span>Three.js</span>
+                    <span>TypeScript</span>
+                  </div>
+                </div>
+              </div>
+              <div class="project-card" data-project="2">
+                <div class="project-image">
+                  <img src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Data Visualization" />
+                </div>
+                <div class="project-content">
+                  <h3>Data Visualization Suite</h3>
+                  <p>Interactive 3D data visualization platform for complex datasets.</p>
+                  <div class="project-tags">
+                    <span>D3.js</span>
+                    <span>Three.js</span>
+                    <span>WebGL</span>
+                  </div>
+                </div>
+              </div>
+              <div class="project-card" data-project="3">
+                <div class="project-image">
+                  <img src="https://images.pexels.com/photos/1181673/pexels-photo-1181673.jpeg?auto=compress&cs=tinysrgb&w=800" alt="VR Experience" />
+                </div>
+                <div class="project-content">
+                  <h3>WebXR Experience</h3>
+                  <p>Virtual reality experience accessible directly through web browsers.</p>
+                  <div class="project-tags">
+                    <span>WebXR</span>
+                    <span>A-Frame</span>
+                    <span>Three.js</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact-section">
+          <div class="container">
+            <div class="section-header">
+              <h2 class="section-title">Let's Work Together</h2>
+              <p class="section-subtitle">Ready to bring your ideas to life</p>
+            </div>
+            <div class="contact-content">
+              <div class="contact-info">
+                <div class="contact-item">
+                  <h4>Email</h4>
+                  <p>sofia.perez@example.com</p>
+                </div>
+                <div class="contact-item">
+                  <h4>Location</h4>
+                  <p>San Francisco, CA</p>
+                </div>
+                <div class="contact-item">
+                  <h4>Social</h4>
+                  <div class="social-links">
+                    <a href="#" target="_blank">LinkedIn</a>
+                    <a href="#" target="_blank">GitHub</a>
+                    <a href="#" target="_blank">Twitter</a>
+                  </div>
+                </div>
+              </div>
+              <form class="contact-form">
+                <div class="form-group">
+                  <input type="text" placeholder="Your Name" required />
+                </div>
+                <div class="form-group">
+                  <input type="email" placeholder="Your Email" required />
+                </div>
+                <div class="form-group">
+                  <textarea placeholder="Your Message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
